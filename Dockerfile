@@ -1,4 +1,4 @@
-FROM everware/base
+FROM everware/base:21102015
 MAINTAINER Tim Head <betatim@gmail.com>
 
 USER root
