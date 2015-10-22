@@ -22,7 +22,7 @@ RUN /bin/bash -c "source activate py27 \
     && mkdir root-build \
     && cd root-build \
     && cmake ../root -Droofit=ON -Dhdfs=OFF -Dbuiltin_xrootd=ON -DCMAKE_INSTALL_PREFIX=/usr/local \
-    && make \
+    && make -j3 \
     && cmake --build . --target install \
     && cd .. \
     && rm -rf root root-build"
