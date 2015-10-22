@@ -10,7 +10,7 @@ WORKDIR /tmp
 
 # ROOT from source, because that is how we roll
 #
-# built with python2.7 take care to install all python modules fro this
+# built with python2.7 take care to install all python modules for this
 # version of python later on
 RUN git clone --depth 1 http://root.cern.ch/git/root.git -b v6-05-02 --single-branch
 RUN /bin/bash -c "source activate py27 \
@@ -30,6 +30,16 @@ RUN conda install -n py27 --yes scipy==0.16.0
 RUN conda install -n py27 --yes matplotlib==1.4.3
 
 RUN apt-get install -y --force-yes vim emacs
+RUN apt-get -y install zsh
+RUN apt-get -y install libboost-all-dev
+RUN apt-get -y install texlive-luatex
+RUN apt-get -y install krb5-user krb5-config
+
+# Change ownership of the conda directory so users can install
+# extra packages without being root
+RUN chown -R jupyter /opt/conda
+
+ADD krb5.conf /etc/krb5.conf
 
 RUN /bin/bash -c "source activate py27 \
        && python -c \"import os;import json;f='/usr/local/share/jupyter/kernels/python2/kernel.json';j=json.load(open(f));j['env']={'PATH': os.environ['PATH']};json.dump(j,open(f,'w'))\""
@@ -37,3 +47,4 @@ RUN /bin/bash -c "source activate py27 \
 WORKDIR /home/jupyter
 USER jupyter
 ADD bashrc /home/jupyter/.bashrc
+ADD root-kernel.json /usr/local/share/jupyter/kernels/root/kernel.json
