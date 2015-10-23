@@ -1,4 +1,4 @@
-FROM everware/base:22102015
+FROM everware/base:23102015
 MAINTAINER Tim Head <betatim@gmail.com>
 
 USER root
@@ -27,7 +27,7 @@ RUN /bin/bash -c "source activate py27 \
     && cd .. \
     && rm -rf root root-build"
 
-ENV LD_LIBRARY_PATH /usr/local/lib/root:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH /usr/local/lib:$PYTHONPATH
 
 ADD krb5.conf /etc/krb5.conf
