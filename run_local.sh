@@ -11,13 +11,15 @@
 # This script does not build the docker image for you. You can
 # do this with a command like:
 #
-#   docker build -t everware_cern_analysis .
+#   docker build -t betatim/everware_cern_analysis .
 #
+# Once you have done this, replace the value of $CONTAINER
+# with the tag you gave to the container when building it.
 #
 set -e
 WORKDIR=`pwd`
 
-CONTAINER="everware_cern_analysis:23102015"
+CONTAINER="betatim/everware_cern_analysis:24102015"
 
 # Directory inside the container which will contain the analysis code
 C_ANADIR="/home/jupyter/analysis"

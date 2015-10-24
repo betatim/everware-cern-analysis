@@ -30,12 +30,12 @@ ADD krb5.conf /etc/krb5.conf
 USER jupyter
 WORKDIR /home/jupyter
 
-RUN conda install -n py27 --yes numpy==1.9.2
-RUN conda install -n py27 --yes scipy==0.16.0
-RUN conda install -n py27 --yes matplotlib==1.4.3
+RUN conda install -n py27 --yes numpy==1.9.2 scipy==0.16.0 matplotlib==1.4.3
 
 RUN /bin/bash -c "source activate py27 \
        && python -c \"import os;import json;f='/home/jupyter/.local/share/jupyter/kernels/python2/kernel.json';j=json.load(open(f));j['env']={'PATH': os.environ['PATH']};json.dump(j,open(f,'w'))\""
 
 ADD bashrc /home/jupyter/.bashrc
 ADD root-kernel.json /home/jupyter/.local/share/jupyter/kernels/root/kernel.json
+ADD root-logo-32x32.png /home/jupyter/.local/share/jupyter/kernels/root/logo-32x32.png 
+ADD root-logo-64x64.png /home/jupyter/.local/share/jupyter/kernels/root/logo-64x64.png 
