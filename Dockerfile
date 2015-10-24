@@ -4,12 +4,7 @@ MAINTAINER Tim Head <betatim@gmail.com>
 USER root
 RUN apt-get -y update
 # Things needed to build ROOT
-RUN apt-get -y --force-yes install libx11-dev libxpm-dev libxft-dev libxext-dev libpng3 libjpeg8 gfortran libssl-dev libpcre3-dev libgl1-mesa-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio3-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev libxml2-dev libafterimage0 libafterimage-dev cmake
-RUN apt-get install -y --force-yes vim emacs
-RUN apt-get -y install zsh
-RUN apt-get -y install libboost-all-dev
-RUN apt-get -y install texlive-luatex
-RUN apt-get -y install krb5-user krb5-config
+RUN apt-get -y --force-yes install libx11-dev libxpm-dev libxft-dev libxext-dev libpng3 libjpeg8 gfortran libssl-dev libpcre3-dev libgl1-mesa-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio3-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev libxml2-dev libafterimage0 libafterimage-dev cmake vim emacs zsh krb5-user krb5-config
 
 WORKDIR /tmp
 
@@ -17,8 +12,8 @@ WORKDIR /tmp
 #
 # built with python2.7 take care to install all python modules for this
 # version of python later on
-RUN git clone --depth 1 http://root.cern.ch/git/root.git -b v6-05-02 --single-branch
 RUN /bin/bash -c "source activate py27 \
+    && git clone --depth 1 http://root.cern.ch/git/root.git -b v6-05-02 --single-branch \
     && mkdir root-build \
     && cd root-build \
     && cmake ../root -Droofit=ON -Dhdfs=OFF -Dbuiltin_xrootd=ON -DCMAKE_INSTALL_PREFIX=/usr/local \
