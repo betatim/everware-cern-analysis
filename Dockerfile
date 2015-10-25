@@ -21,6 +21,13 @@ RUN /bin/bash -c "source activate py27 \
     && cmake --build . --target install \
     && cd .. \
     && rm -rf root root-build"
+RUN /bin/bash -c "source activate py27 \
+    && git clone --depth 1 http://github.com/xrootd/xrootd.git -b v4.2.3 --single-branch \
+    && mkdir xrootd-build \
+    && cd xrootd-build \
+    && cmake ../xrootd -DCMAKE_INSTALL_PREFIX=/usr/local -DENABLE_PERL=FALSE -DENABLE_FUSE=FALSE \
+    && make && make install \
+    && cd .. && rm -rf xrootd xrootd-build"
 
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH /usr/local/lib:$PYTHONPATH
