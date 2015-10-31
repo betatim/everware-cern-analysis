@@ -33,6 +33,9 @@ ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH /usr/local/lib:$PYTHONPATH
 
 ADD krb5.conf /etc/krb5.conf
+ADD save-to-cernbox.sh /usr/local/bin/save-to-cernbox.sh
+ADD cb-get.sh /usr/local/bin/cb-get.sh
+ADD cb-put.sh /usr/local/bin/cb-put.sh
 
 USER jupyter
 WORKDIR /home/jupyter

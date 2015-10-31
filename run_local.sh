@@ -19,7 +19,7 @@
 set -e
 WORKDIR=`pwd`
 
-CONTAINER="betatim/everware_cern_analysis:24102015"
+CONTAINER="betatim/everware_cern_analysis:31102015"
 
 # Directory inside the container which will contain the analysis code
 C_ANADIR="/home/jupyter/analysis"
